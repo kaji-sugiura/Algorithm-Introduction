@@ -37,28 +37,23 @@ public class MergeSort {
 
         while (i < n1 && j < n2) {
             if (left[i] < right[j]) {
-                numbers[k] = left[i];
-                i++;
+                numbers[k++] = left[i++];
             } else {
-                numbers[k] = right[j];
-                j++;
+                numbers[k++] = right[j++];
             }
-            k++;
         }
 
         while (i < n1) {
-            numbers[k] = left[i];
-            i++;
+            numbers[k++] = left[i++];
         }
 
         while (j < n2) {
-            numbers[k] = right[j];
-            j++;
+            numbers[k++] = right[j++];
         }
     }
 
     public static void main(String[] args) {
-        int[] numbers = { 5, 2, 6, 3, 1, 9, 4 };
+        int[] numbers = { 5, 2, 6, 3, 1, 9, 4, 10, Integer.MAX_VALUE, 100, -100, -20, 0 };
         sort(numbers, 0, numbers.length - 1);
         System.out.println(Arrays.toString(numbers));
     }
