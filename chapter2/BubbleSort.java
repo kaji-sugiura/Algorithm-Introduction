@@ -16,6 +16,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
+        //test
         int[] numbers = { 5, 2, 6, 3, 1, 9, 4, 10, Integer.MAX_VALUE, 100, -100, -20, 0 };
         sort(numbers);
         System.out.println(Arrays.toString(numbers));
