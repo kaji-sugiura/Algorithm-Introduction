@@ -68,11 +68,12 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] numbers = new int[100000];
+        int n = 1000000;
+        int[] numbers = new int[n];
         Random rand = new Random();
 
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = rand.nextInt(1000);
+            numbers[i] = rand.nextInt(n);
         }
         mergeSort(numbers, 0, numbers.length - 1);
         System.out.println(Arrays.toString(numbers));
