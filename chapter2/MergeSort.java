@@ -1,6 +1,7 @@
 package chapter2;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * マージソート
@@ -8,12 +9,18 @@ import java.util.Arrays;
  * 分割統治法を用いてソートする
  */
 public class MergeSort {
-    public static void sort(int[] numbers, int p, int r) {
+    private static final int THRESHOLD_NUMBER = 10;
+
+    public static void mergeSort(int[] numbers, int p, int r) {
         if (p < r) {
-            int q = p + (r - p) / 2;
-            sort(numbers, p, q);
-            sort(numbers, q + 1, r);
-            merge(numbers, p, q, r);
+            if (r - p < THRESHOLD_NUMBER) {
+                insertionSort(numbers);
+            } else {
+                int q = p + (r - p) / 2;
+                mergeSort(numbers, p, q);
+                mergeSort(numbers, q + 1, r);
+                merge(numbers, p, q, r);
+            }
         }
     }
 
@@ -48,9 +55,26 @@ public class MergeSort {
         }
     }
 
+    private static void insertionSort(int[] numbers) {
+        for (int i = 1; i < numbers.length; i++) {
+            int key = numbers[i];
+            int j = i - 1;
+            while (j >= 0 && key < numbers[j]) {
+                numbers[j + 1] = numbers[j];
+                j--;
+            }
+            numbers[j + 1] = key;
+        }
+    }
+
     public static void main(String[] args) {
-        int[] numbers = { 5, 2, 6, 3, 1, 9, 4, 10, Integer.MAX_VALUE, 100, -100, -20, 0 };
-        sort(numbers, 0, numbers.length - 1);
+        int[] numbers = new int[10000];
+        Random rand = new Random();
+
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = rand.nextInt(1000);
+        }
+        mergeSort(numbers, 0, numbers.length - 1);
         System.out.println(Arrays.toString(numbers));
     }
 }
