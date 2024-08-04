@@ -14,7 +14,7 @@ public class MergeSort {
     public static void mergeSort(int[] numbers, int p, int r) {
         if (p < r) {
             if (r - p < THRESHOLD_NUMBER) {
-                insertionSort(numbers);
+                insertionSort(numbers, p, r);
             } else {
                 int q = p + (r - p) / 2;
                 mergeSort(numbers, p, q);
@@ -55,11 +55,11 @@ public class MergeSort {
         }
     }
 
-    private static void insertionSort(int[] numbers) {
-        for (int i = 1; i < numbers.length; i++) {
+    private static void insertionSort(int[] numbers, int p, int r) {
+        for (int i = p + 1; i <= r; i++) {
             int key = numbers[i];
             int j = i - 1;
-            while (j >= 0 && key < numbers[j]) {
+            while (j >= p && key < numbers[j]) {
                 numbers[j + 1] = numbers[j];
                 j--;
             }
@@ -68,7 +68,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] numbers = new int[10000];
+        int[] numbers = new int[100000];
         Random rand = new Random();
 
         for (int i = 0; i < numbers.length; i++) {
