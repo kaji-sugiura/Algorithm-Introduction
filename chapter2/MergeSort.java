@@ -21,34 +21,30 @@ public class MergeSort {
         int n1 = q - p + 1;
         int n2 = r - q;
 
-        int[] left = new int[n1];
-        int[] right = new int[n2];
+        int[] tmp = new int[n1 + n2];
 
-        for (int i = 0; i < n1; i++) {
-            left[i] = numbers[i + p];
-        }
+        int i = p;
+        int j = q + 1;
+        int k = 0;
 
-        for (int j = 0; j < n2; j++) {
-            right[j] = numbers[q + 1 + j];
-        }
-
-        int i = 0, j = 0;
-        int k = p;
-
-        while (i < n1 && j < n2) {
-            if (left[i] < right[j]) {
-                numbers[k++] = left[i++];
+        while (i <= q && j <= r) {
+            if (numbers[i] < numbers[j]) {
+                tmp[k++] = numbers[i++];
             } else {
-                numbers[k++] = right[j++];
+                tmp[k++] = numbers[j++];
             }
         }
 
-        while (i < n1) {
-            numbers[k++] = left[i++];
+        while (i <= q) {
+            tmp[k++] = numbers[i++];
         }
 
-        while (j < n2) {
-            numbers[k++] = right[j++];
+        while (j <= r) {
+            tmp[k++] = numbers[j++];
+        }
+
+        for (i = p, k = 0; i <= r; i++, k++) {
+            numbers[i] = tmp[k];
         }
     }
 
