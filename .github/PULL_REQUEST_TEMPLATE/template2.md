@@ -1,3 +1,0 @@
-<!-- .github/PULL_REQUEST_TEMPLATE/template2.md -->
-## Template 2
-Description for template 2...
